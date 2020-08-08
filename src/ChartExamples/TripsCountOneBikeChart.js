@@ -1,11 +1,11 @@
-import React, {useMemo, useState, useEffect} from "react";
+import React, {useMemo, useState } from "react";
 import Highcharts from "highcharts";  // Highcharts library
 import HighchartsReact from 'highcharts-react-official';  // Highcharts wrapper for React
 
 export const TripsCountOneBikeChart = (bikeData) => {
     // Define the necessary states for our chart
-    const [data, setData] = useState(bikeData.bikeData);
-    const [bikeId, setBikeId] = useState(21434);
+    const [ data ] = useState(bikeData.bikeData);
+    const [ bikeId ] = useState(21434);
 
     // Filter by a certain Bike ID
     const filteredTrips = data.filter(n => {
@@ -57,7 +57,7 @@ export const TripsCountOneBikeChart = (bikeData) => {
             },
             series: ready
         }
-    }, [ready]);
+    }, [ready, bikeId]);
 
     // HDD - Debug
     // console.log("chart", chart);
