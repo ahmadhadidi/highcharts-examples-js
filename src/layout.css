@@ -1,0 +1,18 @@
+/*
+    CSS Styling to have a native grid layout of 3 columns by `n` rows.
+    https://stackoverflow.com/questions/48464444/how-to-display-3-items-per-row-in-flexbox/48464559
+ */
+
+/* We create a flexbox container with the necessary rules to make it 3 columns by `n` rows */
+.flexbox {
+    display: flex;
+    flex-direction: row;
+    width: 99vw;  /* else it will show a horizontal bar */
+    flex-wrap: wrap;
+}
+
+/* Set the columns to 33% of the width of the display */
+.column {
+    display: flex;
+    flex-basis: 33%;
+}
