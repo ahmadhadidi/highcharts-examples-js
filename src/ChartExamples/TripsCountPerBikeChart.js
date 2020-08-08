@@ -1,4 +1,4 @@
-import React, {useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Highcharts from "highcharts";  // Highcharts library
 import HighchartsReact from 'highcharts-react-official';  // Highcharts wrapper for React
 
@@ -22,13 +22,16 @@ export const TripsCountPerBikeChart = (bikeData) => {
     // console.log("xAxisCategories", xAxisCategories);
 
     // Format the series in a way that Highcharts understands
-    // Resource -- https://www.youtube.com/watch?v=G3BS3sh3D8Q
-    // Make sure that you adhere to creating a collection of arrays within 1 array.
+    // Resource: https://www.highcharts.com/demo/column-rotated-labels
     const ready = [{
         name: "Trip Count",
+        // Map the `ids` and `amountOfTrips` to data (Res 1) and sort it (Res 2)
+        // Resource 1: https://www.youtube.com/watch?v=G3BS3sh3D8Q
+        // Resource 2: https://stackoverflow.com/questions/25082034/highcharts-error-15
         data: filteredTrips.map(n => [n.id, n.amountOfTrips]).sort()
     }]
 
+    // HDD - Debug
     // console.log("ready", ready);
 
     // Make the chart object and pass our `formattedSeries` array to it.
