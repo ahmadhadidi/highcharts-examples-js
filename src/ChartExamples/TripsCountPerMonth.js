@@ -28,7 +28,7 @@ export const TripsCountPerMonthChart = (bikeData) => {
     });
 
     // HDD - Debug
-    // console.log("Filtered Trips By Day", filteredTripsByDate);
+    // console.log("Filtered Trips By Month", filteredTripsByDate);
 
     // We select distinct objects by property value from an array of objects (By the day name)
     // Resource: https://codeburst.io/javascript-array-distinct-5edc93501dc4
