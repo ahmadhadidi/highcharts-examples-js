@@ -22,18 +22,15 @@ function App() {
 
     return (
         <div className="App flexbox">
-            {/*<div className="column">*/}
-            {/*    /!* Pass the bikeData as a partial object to make the code scalable *!/*/}
-            {/*    <TripsCountChart bikeData={ combinedProps.bikeData } />*/}
-            {/*</div>*/}
-            {/*<div className="column">*/}
-            {/*    <TripsCountOneBikeChart bikeData={ combinedProps.bikeData }/>*/}
-            {/*</div>*/}
-            {/*<div className="column">*/}
-            {/*    <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>*/}
-            {/*</div>*/}
             <div className="column">
-                <TripsAcrossDaysChart bikeData={ combinedProps.bikeData }/>
+                {/* Pass the bikeData as a partial object to make the code scalable */}
+                <TripsCountChart bikeData={ combinedProps.bikeData } />
+            </div>
+            <div className="column">
+                <TripsCountOneBikeChart bikeData={ combinedProps.bikeData }/>
+            </div>
+            <div className="column">
+                <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>
             </div>
             <div className="column">
                 <TripsAcrossDaysChart bikeData={ combinedProps.bikeData }/>

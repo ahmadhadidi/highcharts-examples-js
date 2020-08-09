@@ -27,7 +27,8 @@ export const TripsAcrossDaysChart = (bikeData) => {
         }
     });
 
-    console.log("Filtered Trips By Day", filteredTripsByDate);
+    // HDD - Debug
+    // console.log("Filtered Trips By Day", filteredTripsByDate);
 
     // We select distinct objects by property value from an array of objects (By the day name)
     // Resource: https://codeburst.io/javascript-array-distinct-5edc93501dc4
@@ -40,7 +41,7 @@ export const TripsAcrossDaysChart = (bikeData) => {
     });
 
     // HDD - Debug
-    console.log("filteredTrips", filteredTrips);
+    // console.log("filteredTrips", filteredTrips);
     // console.log("Amount of Trips per Bike", numberOfTripsPerBike);
     // console.log("xAxisCategories", xAxisCategories);
 
