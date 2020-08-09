@@ -30,7 +30,7 @@ export const TripsCountOneBikeChart = (bikeData) => {
                 text: `Trips Count for One Bike`
             },
             subtitle: {
-                text: `Ahmad AlHadidi`
+                text: `An Ahmad Hadidi Chart`
             },
             chart: {
                 type: 'bar'

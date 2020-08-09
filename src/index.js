@@ -10,6 +10,7 @@ import { TripsCountChart } from "./ChartExamples/TripsCountChart";
 import { TripsCountPerBikeChart } from "./ChartExamples/TripsCountPerBikeChart";
 import { TripsAcrossDaysChart } from "./ChartExamples/TripsAcrossDaysChart";
 import { TripsCountPerMonthChart } from "./ChartExamples/TripsCountPerMonth";
+import { TripsCountPerHourChart } from "./ChartExamples/TripsCountPerHourChart";
 
 function App() {
     // Make a demo prop to pass it to the components
@@ -34,10 +35,13 @@ function App() {
                 <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>
             </div>
             <div className="column">
+                <TripsCountPerMonthChart bikeData={ combinedProps.bikeData }/>
+            </div>
+            <div className="column">
                 <TripsAcrossDaysChart bikeData={ combinedProps.bikeData }/>
             </div>
             <div className="column">
-                <TripsCountPerMonthChart bikeData={ combinedProps.bikeData }/>
+                <TripsCountPerHourChart bikeData={ combinedProps.bikeData }/>
             </div>
             <div className="column">
                 <DemoChart props/>

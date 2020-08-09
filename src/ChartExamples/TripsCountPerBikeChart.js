@@ -41,7 +41,7 @@ export const TripsCountPerBikeChart = (bikeData) => {
                 text: `Trips Count Per Bike`
             },
             subtitle: {
-                text: `Ahmad AlHadidi`
+                text: `An Ahmad Hadidi Chart`
             },
             chart: {
                 type: 'column'

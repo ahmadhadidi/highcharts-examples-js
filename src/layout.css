@@ -7,7 +7,7 @@
 .flexbox {
     display: flex;
     flex-direction: row;
-    width: 99vw;  /* else it will show a horizontal bar */
+    width: 98vw;  /* else it will show a horizontal bar */
     flex-wrap: wrap;
 }
 

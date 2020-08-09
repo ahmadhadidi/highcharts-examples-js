@@ -3,7 +3,7 @@ import Highcharts from "highcharts";  // Highcharts library
 import HighchartsReact from 'highcharts-react-official';  // Highcharts wrapper for React
 import moment from 'moment';
 
-export const TripsAcrossDaysChart = (bikeData) => {
+export const TripsCountPerHourChart = (bikeData) => {
     // Define the necessary states for our chart
     const [ data ] = useState(bikeData.bikeData);
 
@@ -28,15 +28,15 @@ export const TripsAcrossDaysChart = (bikeData) => {
     });
 
     // HDD - Debug
-    // console.log("Filtered Trips By Day", filteredTripsByDate);
+    // console.log("Filtered Trips By Hours", filteredTripsByDate);
 
     // We select distinct objects by property value from an array of objects (By the day name)
     // Resource: https://codeburst.io/javascript-array-distinct-5edc93501dc4
-    const filteredTrips = Array.from(new Set(filteredTripsByDate.map(n => n.dayName))).map(id => {
+    const filteredTrips = Array.from(new Set(filteredTripsByDate.map(n => n.hour))).map(id => {
         return {
             id: id,
-            tripData: filteredTripsByDate.filter(s => s.dayName === id),
-            amountOfTrips: filteredTripsByDate.filter(s => s.dayName === id).length
+            tripData: filteredTripsByDate.filter(s => s.hour === id),
+            amountOfTrips: filteredTripsByDate.filter(s => s.hour === id).length
         }
     });
 
@@ -52,7 +52,7 @@ export const TripsAcrossDaysChart = (bikeData) => {
         // Map the `ids` and `amountOfTrips` to data (Res 1) and sort it (Res 2)
         // Resource 1: https://www.youtube.com/watch?v=G3BS3sh3D8Q
         // Resource 2: https://stackoverflow.com/questions/25082034/highcharts-error-15
-        data: filteredTrips.map(n => [n.id, n.amountOfTrips])
+        data: filteredTrips.map(n => [n.id, n.amountOfTrips]).sort()
     }]
 
     // HDD - Debug
@@ -62,7 +62,7 @@ export const TripsAcrossDaysChart = (bikeData) => {
     const chart = useMemo(() => {
         return {
             title: {
-                text: `Trips Count Per Day`
+                text: `Trips Count Per Hour`
             },
             subtitle: {
                 text: `An Ahmad Hadidi Chart`
