@@ -8,6 +8,7 @@ import { DemoChart } from "./ChartExamples/DemoChart";
 import { TripsCountOneBikeChart } from "./ChartExamples/TripsCountOneBikeChart";
 import { TripsCountChart } from "./ChartExamples/TripsCountChart";
 import { TripsCountPerBikeChart } from "./ChartExamples/TripsCountPerBikeChart";
+import { TripsAcrossDaysChart } from "./ChartExamples/TripsAcrossDaysChart";
 
 function App() {
     // Make a demo prop to pass it to the components
@@ -21,15 +22,18 @@ function App() {
 
     return (
         <div className="App flexbox">
+            {/*<div className="column">*/}
+            {/*    /!* Pass the bikeData as a partial object to make the code scalable *!/*/}
+            {/*    <TripsCountChart bikeData={ combinedProps.bikeData } />*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsCountOneBikeChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
             <div className="column">
-                {/* Pass the bikeData as a partial object to make the code scalable */}
-                <TripsCountChart bikeData={ combinedProps.bikeData } />
-            </div>
-            <div className="column">
-                <TripsCountOneBikeChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>
+                <TripsAcrossDaysChart bikeData={ combinedProps.bikeData }/>
             </div>
             <div className="column">
                 <DemoChart props/>
