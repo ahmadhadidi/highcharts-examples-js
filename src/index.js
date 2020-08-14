@@ -12,6 +12,7 @@ import { TripsAcrossDaysChart } from "./ChartExamples/TripsAcrossDaysChart";
 import { TripsCountPerMonthChart } from "./ChartExamples/TripsCountPerMonth";
 import { TripsCountPerHourChart } from "./ChartExamples/TripsCountPerHourChart";
 import { DistanceCoveredPerBikeChart } from "./ChartExamples/DistanceCoveredPerBikeChart";
+import { Viz } from "./ChartExamples/TripsVisualizedKeplerGL";
 
 function App() {
     // Make a demo prop to pass it to the components
@@ -25,30 +26,33 @@ function App() {
 
     return (
         <div className="App flexbox">
+            {/*<div className="column">*/}
+            {/*    /!* Pass the bikeData as a partial object to make the code scalable *!/*/}
+            {/*    <TripsCountChart bikeData={ combinedProps.bikeData } />*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsCountOneBikeChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsCountPerMonthChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsAcrossDaysChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <TripsCountPerHourChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <DistanceCoveredPerBikeChart bikeData={ combinedProps.bikeData }/>*/}
+            {/*</div>*/}
+            {/*<div className="column">*/}
+            {/*    <DemoChart props/>*/}
+            {/*</div>*/}
             <div className="column">
-                {/* Pass the bikeData as a partial object to make the code scalable */}
-                <TripsCountChart bikeData={ combinedProps.bikeData } />
-            </div>
-            <div className="column">
-                <TripsCountOneBikeChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <TripsCountPerBikeChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <TripsCountPerMonthChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <TripsAcrossDaysChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <TripsCountPerHourChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <DistanceCoveredPerBikeChart bikeData={ combinedProps.bikeData }/>
-            </div>
-            <div className="column">
-                <DemoChart props/>
+                <Viz bikeData={ combinedProps.bikeData }/>
             </div>
         </div>
     );
