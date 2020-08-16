@@ -93,11 +93,11 @@ export const DistanceCoveredPerBikeChart = (bikeData) => {
                     rangeDescription: 'Range: 2010 to 2017'
                 }
             },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
+            // legend: {
+            //     layout: 'vertical',
+            //     align: 'right',
+            //     verticalAlign: 'middle'
+            // },
             series: ready
         }
     }, [ready]);

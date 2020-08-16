@@ -5,7 +5,7 @@ import moment from 'moment';
 import {distance} from '../helpers/distance';
 
 // Kepler.GL Imports
-import KeplerGl from "kepler.gl";
+// import KeplerGl from "kepler.gl";
 import keplerGlReducer, { uiStateUpdaters } from "kepler.gl/reducers";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { taskMiddleware } from "react-palm/tasks";
@@ -15,10 +15,46 @@ import { processGeojson } from 'kepler.gl/processors';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import { customizedKeplerGlReducer } from '../helpers/initialUiState';
 import { enhanceReduxMiddleware } from 'kepler.gl/middleware';
+import styled from 'styled-components';
+import {theme} from 'kepler.gl/styles';
 
+import CustomSidebarFactory from "../keplergl-components/side-bar";
+import CustomPanelHeaderFactory from "../keplergl-components/panel-header";
+import CustomPanelToggleFactory from "../keplergl-components/panel-toggle";
+import CustomSidePanelFactory from "../keplergl-components/custom-panel";
+
+import {
+    SidebarFactory,
+    PanelHeaderFactory,
+    PanelToggleFactory,
+    CustomPanelsFactory,
+    injectComponents
+} from 'kepler.gl/components';
 
 // Kepler.GL Config
 import tripVisState from '../helpers/visStateForTrips';
+
+const StyledMapConfigDisplay = styled.div`
+  position: absolute;
+  z-index: 100;
+  bottom: 10px;
+  right: 10px;
+  background-color: ${theme.sidePanelBg};
+  font-size: 11px;
+  width: 300px;
+  color: ${theme.textColor};
+  word-wrap: break-word;
+  min-height: 60px;
+  padding: 10px;
+`;
+
+// Inject custom components
+const KeplerGl = injectComponents([
+    [SidebarFactory, CustomSidebarFactory],
+    [PanelHeaderFactory, CustomPanelHeaderFactory],
+    [PanelToggleFactory, CustomPanelToggleFactory],
+    [CustomPanelsFactory, CustomSidePanelFactory]
+]);
 
 // Create a reducer for Kepler using our customized reducer
 const reducers = combineReducers({
