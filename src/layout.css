@@ -16,3 +16,8 @@
     display: flex;
     flex-basis: 33%;
 }
+
+.column-keplergl {
+    display: flex;
+    flex-basis: 100%;
+}

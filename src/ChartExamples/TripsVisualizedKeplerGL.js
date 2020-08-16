@@ -2,28 +2,40 @@ import React, {useMemo, useState} from "react";
 import Highcharts from "highcharts";  // Highcharts library
 import HighchartsReact from 'highcharts-react-official';  // Highcharts wrapper for React
 import moment from 'moment';
-import { distance } from '../helpers/distance';
+import {distance} from '../helpers/distance';
 
 // Kepler.GL Imports
 import KeplerGl from "kepler.gl";
-import keplerGlReducer from "kepler.gl/reducers";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import keplerGlReducer, { uiStateUpdaters } from "kepler.gl/reducers";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { taskMiddleware } from "react-palm/tasks";
 import { Provider, useDispatch } from "react-redux";
 import { addDataToMap } from "kepler.gl/actions";
 import { processGeojson } from 'kepler.gl/processors';
-import KeplerGlSchema from 'kepler.gl/schemas';
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import { customizedKeplerGlReducer } from '../helpers/initialUiState';
+import { enhanceReduxMiddleware } from 'kepler.gl/middleware';
+
 
 // Kepler.GL Config
 import tripVisState from '../helpers/visStateForTrips';
 
-// Create a reducer for Kepler
+// Create a reducer for Kepler using our customized reducer
 const reducers = combineReducers({
-    keplerGl: keplerGlReducer
+    keplerGl: customizedKeplerGlReducer
 });
 
+// Setup for creating a Kepler Store
+// Resource: https://github.com/keplergl/kepler.gl/blob/master/examples/custom-reducer/src/store.js
+const middlewares = enhanceReduxMiddleware([]);
+const enhancers = [applyMiddleware(...middlewares)];
+const initialState = {};
+
+// add redux devtools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // Create a redux store for Kepler.GL
-const store = createStore( reducers, {}, applyMiddleware(taskMiddleware) );
+const store = createStore(reducers, initialState, composeEnhancers(...enhancers));
 
 // Export the visualisation with the required provider by Kepler.GL
 export function Viz(bikeData) {
@@ -36,7 +48,7 @@ export function Viz(bikeData) {
 
 export const TripsVisualizedKeplerGL = (bikeData) => {
     // Define the necessary states for our chart
-    const [ data ] = useState(bikeData.bikeData);
+    const [data] = useState(bikeData.bikeData);
 
     // HDD - Debug
     // console.log("data", data);
@@ -146,7 +158,7 @@ export const TripsVisualizedKeplerGL = (bikeData) => {
                     },
                     option: {
                         centerMap: true,
-                        readOnly: false
+                        readOnly: false,
                     },
                     config: {
                         "mapState": {
@@ -163,17 +175,35 @@ export const TripsVisualizedKeplerGL = (bikeData) => {
                             "mapStyles": {}
                         },
                         "visState":
-                            tripVisState  // Configuration for the trips.
-
+                        tripVisState  // Configuration for the trips.
                     }
                 })
             );
         }
     }, [dispatch, ready]);
 
+    // Add state for the AutoSizer so that we can show Kepler.GL as a `chart` in `index.js`
+    // Note: If you want Kepler to occupy the entire screen, comment the elements in
+    const state = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    }
+
     // Render the chart
     return (
         <Provider store={store}>
+            {/* Uncomment the below chunk to show Kepler.GL as an adjacent div to the other charts */}
+            {/*<AutoSizer>*/}
+            {/*    {({width, height}) => (*/}
+            {/*        <KeplerGl*/}
+            {/*            id="covid"*/}
+            {/*            mapboxApiAccessToken={"pk.eyJ1IjoiZ2VtMDA3YmQiLCJhIjoiY2s4eWp1bm1lMDI0YjNnbzJrdjAwZjBtOCJ9.tbVJU8WahL2ZTuI7fS-NDQ"}*/}
+            {/*            width={width}*/}
+            {/*            height={height}*/}
+            {/*        />*/}
+            {/*    )}*/}
+            {/*</AutoSizer>*/}
+
             <KeplerGl
                 id="covid"
                 mapboxApiAccessToken={"pk.eyJ1IjoiZ2VtMDA3YmQiLCJhIjoiY2s4eWp1bm1lMDI0YjNnbzJrdjAwZjBtOCJ9.tbVJU8WahL2ZTuI7fS-NDQ"}
@@ -186,10 +216,9 @@ export const TripsVisualizedKeplerGL = (bikeData) => {
 
 // Journal:
 // DONE: Custom Color on the trips themselves (speed bound).
-// Can't be done since it is a bug.
-// ABNDND: Show legend by default.
-// Doesn't have its own trigger.
+    // Can't be done since it is a bug.
+// Done: Show legend by default.
 // ABNDND: Show Coordinates by default.
-// Really annoying
+    // Really annoying
 // DONE: Time of the trips doesn't match the timeline 🤔.
 // TODO: Inject the charts into KeplerGLs sidebar.
