@@ -80,3 +80,5 @@ function CustomSidebarFactory(CloseButton) {
 CustomSidebarFactory.deps = [CloseButtonFactory];
 
 export default CustomSidebarFactory;
+
+// HDD - This class controls the " < " green button on the top left corner which opens and closes the sidebar.

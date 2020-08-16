@@ -51,8 +51,8 @@ const StyledMapConfigDisplay = styled.div`
 // Inject custom components
 const KeplerGl = injectComponents([
     [SidebarFactory, CustomSidebarFactory],
-    [PanelHeaderFactory, CustomPanelHeaderFactory],
-    [PanelToggleFactory, CustomPanelToggleFactory],
+    // [PanelHeaderFactory, CustomPanelHeaderFactory],
+    // [PanelToggleFactory, CustomPanelToggleFactory],
     [CustomPanelsFactory, CustomSidePanelFactory]
 ]);
 
@@ -207,7 +207,7 @@ export const TripsVisualizedKeplerGL = (bikeData) => {
                             "isSplit": false
                         },
                         "mapStyle": {
-                            "styleType": "dark",
+                            "styleType": "light",
                             "mapStyles": {}
                         },
                         "visState":
